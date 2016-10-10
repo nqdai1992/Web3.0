@@ -82,6 +82,7 @@
 	width: 100%;
 }
 
+
 .girl_image_overlay {
 	position: absolute;
 	display: none;
@@ -96,6 +97,11 @@
 
 .girl_image_container:hover .girl_image_overlay{
 	display: block;
+}
+
+.girl_image_container:hover .plus_button{
+	display: block;
+	z-index: 3;
 }
 
 .girl_image_info {
@@ -116,6 +122,8 @@
 	left: 10px;
 	font-size: 1.2em;
 	position: absolute;
+	display:none;
+	color: #ffffff;
 }
 
 .plus_button:hover {
@@ -162,6 +170,8 @@
 	top: 0px;
 	left: 0px;
 	z-index: 3;
+	display: block;
+	color:	#000000;
 }
 
 .girl_modal .plus_button:hover {
