@@ -140,6 +140,20 @@
 	margin-right: 10px;
 }
 
+
+.girl_modal .poster_avatar {
+	width: 84px;
+	height: 84px;
+	float: left;
+	margin-right: 10px;
+}
+
+.girl_comment_container {
+	padding-top: 15px 0px 15px 0px;
+	border-bottom: solid 1px #d7d7d7;
+	overflow: auto;
+}
+
 @media screen and (max-width: 768px) {
 	.header {
 		position: static;
