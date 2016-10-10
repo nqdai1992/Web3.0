@@ -169,6 +169,10 @@
 	color: #ffffff;
 }
 
+.girl_modal .modal-content {
+	border-radius: 30px;
+}
+
 .girl_image_info_container {
 	padding: 15px 0px 15px 0px;
 	border-bottom: solid 1px #d7d7d7;
@@ -190,6 +194,7 @@
 .user_comment_container {
 	padding-left:0px;
 }
+
 
 @media screen and (max-width: 768px) {
 	.header {
