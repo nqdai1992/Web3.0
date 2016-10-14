@@ -82,11 +82,10 @@ var data = [
 	]
 $(document).ready(function () {
 	var source = $("#girl_item_template").html();
+
 	var girlitemtemplate = Handlebars.compile(source);
 	
-	$("#girl_item_container").html(
-		girlitemtemplate(data)
-	);
+	requestNextPage(girlitemtemplate);
 	
 	/* $("#girl_item_container").masonry({
 		itemSelector: '.girl_item',
@@ -101,16 +100,30 @@ $(document).ready(function () {
 	});
 });
 
+var masonryInit = false;
 function requestNextPage(girlitemtemplate) {
 	$.ajax({
 		type: "GET",
 		url: "../imageData.json"
 	}).done(function(data) {
-		console.log(data);
-		var item = $(girlitemtemplate(data));
-		$("#girl_item_container").append(item);
-	}).fail(function(error){
+		if (masonryInit) {
+			var girlitem = $(girlitemtemplate(data));
+			$("#girl_item_container").append(girlitem).masonry('appended',girlitem);
+		} else {
+			$("#girl_item_container").html(
+				girlitemtemplate(data)
+			);
+			$("#girl_item_container").masonry({
+				itemSelector: '.girl_item',
+				columnWidth: '.girl_item',
+				percentPosition: true
+			});
+			masonryInit = true;
+		}
+	}).fail(function(error, data){
+		console.log("Error");
 		console.log(error);
 	}).always(function(){
+		masonryInit = true;
 	});
 }
