@@ -18,7 +18,7 @@
 		<div class="col-sm-6 col-md-3 girl_item">
 			<div class="girl_image_container" >
 				<img src={{imageUrl}} class="img-responsive girl_image">
-				<div class="girl_image_overlay" data-toggle="modal" data-target=".girl_modal">
+				<div class="girl_image_overlay" data-toggle="modal" data-target='#{{id}}'>
 					<button class="plus_button">
 						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					</button>
@@ -51,11 +51,7 @@
 				</div>
 			</div>						
 		</div>
-		{{/each}}
-	</script>
-	<script id="girl_modal_template" type="text/x-handlebars-template">
-		{{#each this}}
-		<div class="modal fade girl_modal" tabindex="-1" role="dialog">
+		<div class="modal fade girl_modal" tabindex="-1" role="dialog" id={{id}}>
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-body">
@@ -111,6 +107,10 @@
 				</div>
 			</div>
 		</div>
+		{{/each}}
+	</script>
+	<script id="girl_modal_template" type="text/x-handlebars-template">
+		{{#each this}}
 		{{/each}}
 	</script>
 	

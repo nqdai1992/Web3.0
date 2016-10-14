@@ -99,9 +99,14 @@ $(document).ready(function () {
 		}
 	});
 });
-
+var dataLoading = false;
 var masonryInit = false;
 function requestNextPage(girlitemtemplate) {
+	if (dataLoading)
+		return;
+	
+	dataLoading = true;
+	
 	$.ajax({
 		type: "GET",
 		url: "../imageData.json"
@@ -124,6 +129,6 @@ function requestNextPage(girlitemtemplate) {
 		console.log("Error");
 		console.log(error);
 	}).always(function(){
-		masonryInit = true;
+		dataLoading = false;
 	});
 }
