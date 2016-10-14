@@ -203,12 +203,41 @@
 	padding-left:0px;
 }
 
+.footer_button {
+	width: 36px;
+	height: 36px;
+}
+
+.social_button {
+	float: right;
+}
+
+.loading_bar{
+	height: 36px;
+	line-height: 14px;
+}
+.loading_bar hr{
+	margin-top: 7px;
+	border-top: 1px solid #a1a1a1;
+}
+.loading_animation {
+	height: 36px;
+}
+
+.loading_ball {
+	width: 20px;
+	height: 20px;
+	background-color: #707070;
+    border-radius: 50px;
+	display: inline-block;
+	line-height: 20px;
+}
+
 
 @media screen and (max-width: 768px) {
 	.header {
 		position: static;
-	}
-	
+	}	
 	.body {
 		padding: 0;
 	}

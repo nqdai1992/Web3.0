@@ -10,6 +10,7 @@
     <script src="libs/bootstrap/js/bootstrap.min.js"></script>
 	<script src="libs/handlebars.js"></script>
 	<script src="libs/masonry.pkgd.min.js"></script>
+	<script src="libs/jquery.color.min.js"></script>
 	<script src="js/main.js"></script>
   </head>
   <body class="body">
@@ -109,10 +110,6 @@
 		</div>
 		{{/each}}
 	</script>
-	<script id="girl_modal_template" type="text/x-handlebars-template">
-		{{#each this}}
-		{{/each}}
-	</script>
 	
 	<header class="header">
 		<div class="container">
@@ -145,5 +142,36 @@
 			</div>
 		</div>
 	</section>
-  </body>
+	<footer class="footer">
+		<div class="wrapper container-fluid footer_bar_container">
+			<div class="row">
+				<div class="col-xs-3 col-md-2">
+					<img src="img/icon-user.png" class="img-responsive footer_button social_button">			
+				</div>
+				<div class="col-xs-3 col-md-2 pull-right">
+					<img src="img/topup-button.png" class="img-responsive footer_button">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+				<div class="row">
+					<div class="col-md-5 loading_bar">
+						<hr>
+					</div>
+					<div class="col-md-2 loading_bar text-center">
+						<div class="loading_ball_one loading_ball">
+						</div>
+						<div class="loading_ball_two loading_ball">
+						</div>
+						<div class="loading_ball_three loading_ball">
+						</div>
+					</div>
+					<div class="col-md-5 loading_bar">
+						<hr>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</body>
 </html>

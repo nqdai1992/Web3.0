@@ -205,6 +205,16 @@
 	padding-left:0px;
 }
 
+.footer {
+	position: fixed;
+	bottom: 0px;
+}
+
+.footer .user_icon {
+	width: 36px;
+	height: 36px;
+	line-height: 36px;
+}
 
 @media screen and (max-width: 768px) {
 	.header {
