@@ -1,110 +1,33 @@
-/* var data = [
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"posterName"    : "Dzungggg",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/3.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/2.png",
-		"posterName"    : "Sannnn",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/2.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"posterName"    : "Tranggggg",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/4.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/3.png",
-		"posterName"    : "Ngannnnn",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"posterName"    : "Dzungggg",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/3.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/2.png",
-		"posterName"    : "Sannnn",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/2.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/1.png",
-		"posterName"    : "Tranggggg",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  },
-	  {
-		"imageUrl"      : "http://www.vatcss.info/TechKidsGirls/4.png",
-		"view"          : 857,
-		"date"          : "07/05/12",
-		"plus"          : 588,
-		"posterName"    : "Ngannnnn",
-		"posterAvatar"  : "http://www.vatcss.info/TechKidsGirls/3.png",
-		"posterTitle"   : "HRC Photo",
-		"content"       : "Lorem ipsum dolor sit amet, te possim inimicus ius. Alii ullam at corper pri ad, per nulla luptatum te, in qui delenit nostrum. Nam ad labores."
-	  }
-	] */
 $(document).ready(function () {
 	var source = $("#girl_item_template").html();
 
 	var girlitemtemplate = Handlebars.compile(source);
 	
+	var requestpage;
+	
 	requestNextPage(girlitemtemplate);
 	
-	animate();
-	/* $("#girl_item_container").masonry({
-		itemSelector: '.girl_item',
-		columnWidth: '.girl_item',
-		percentPosition: true
-	}); */
 	
-	/* $(window).on("scroll", function () {
-			if ($(document).height() <= $(window).scrollTop() + $(window).height() + 400) {				
-				requestNextPage(girlitemtemplate);
+	$(window).on("scroll", function () {
+			if ($(document).height() <= $(window).scrollTop() + $(window).height() + 400) {		
+				clearTimeout(requestpage);
+				requestpage = window.setTimeout(function() {
+									requestNextPage(girlitemtemplate)
+							},3000);			
 		}
-	}); */
+	});
 	
-	AddPopoverSocialPanel();
+	$('.topup_button').on("click", function () {
+		window.scrollTo(0,0)
+	});
+	loadingBarAnimation();
+	
+	addPopoverSocialPanel();
 });
 var dataLoading = false;
 var masonryInit = false;
 var page = 1;
+
 function requestNextPage(girlitemtemplate) {
 	if (dataLoading)
 		return;
@@ -128,47 +51,50 @@ function requestNextPage(girlitemtemplate) {
 				percentPosition: true
 			});
 			masonryInit = true;
+			
 		}
+		dataLoading = false;
 		page++;
-	}).fail(function(error, data){
+	}).fail(function(error){
 		console.log("Error");
 		console.log(error);
-	}).always(function(){
-		
-		dataLoading = false;
 	});
+	
+	return dataLoading;
 }
 
-function animate() {
+function loadingBarAnimation() {
 	$('.loading_ball_one').animate({backgroundColor:'#a1a1a1'}, 400, function(){
 		$('.loading_ball_three').animate({backgroundColor:'#707070'})
 		$('.loading_ball_two').animate({backgroundColor:'#a1a1a1'}, 400, function(){
 			$('.loading_ball_one').animate({backgroundColor:'#707070'})		
 			$('.loading_ball_three').animate({backgroundColor:'#a1a1a1'}, 400, function(){
 				$('.loading_ball_two').animate({backgroundColor:'#707070'})
-				animate();
+				loadingBarAnimation();
 			});
 		});
 	});
 }
 
-function AddPopoverSocialPanel() {
-	 var popoverTemplate = ['<div class="popover">',
+function addPopoverSocialPanel() {
+	 var popoverTemplate = ['<div class="popover social_popover">',
                                 '<div class="arrow"></div>',
-                                '<div class="popover-content">',                                    
+                                '<div class="popover-content">',  
                                 '</div>',
                             '</div>'].join('');
 	var content = ['<div>Chốn lầu xanh riêng của gia đình Tech Kids</div>',
-                   '<div><img src="" class="twitter_button" aria-hidden="true"></span></div>',
-				   '<div><img class="rss_button" aria-hidden="true"></span></div>',
-				   '<div><img class="facebook_button" aria-hidden="true"></span></div>'
-				   '<div><img class="pinterest_button" aria-hidden="true"></span></div>'
-					].join('');
-	$('.social_button').popover({
+					'<div>',
+                   '<div class="social_button"><img src="img/Twitter Icon.png" class="img-responsive" aria-hidden="true"></span></div>',
+				   '<div class="social_button"><img src="img/RSS Icon.png" class="img-responsive" aria-hidden="true"></span></div>',
+				   '<div class="social_button"><img src="img/Facebook Icon.png" class="img-responsive" aria-hidden="true"></span></div>',
+				   '<div class="social_button"><img src="img/Pinterest.png" class="img-responsive" aria-hidden="true"></span></div>',
+					'</div>'].join('');
+
+	$('.social_panel').popover({
 		template : popoverTemplate,
-		trigger: 'click',
+		trigger: 'hover click',
 		content: content,
 		placement: "top",
-		html: true
+		html: true,
 	});
 }
